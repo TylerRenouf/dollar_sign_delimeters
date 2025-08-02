@@ -1,0 +1,8 @@
+{
+  "python.analysis.extraPaths": [
+ 
+	"C:/Users/tyler/OneDrive/Desktop/Random Programming/anki/pylib",
+	"C:/Users/tyler/OneDrive/Desktop/Random Programming/anki/qt",
+
+  ]
+}
