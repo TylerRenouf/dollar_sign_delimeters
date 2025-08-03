@@ -45,14 +45,13 @@ def get_valid_pairs(text):
 				if double_openings:
 					start_idx = double_openings.pop()
 					double_pairs.append((start_idx, i))
-					i+=2
+					i+=1
 				elif single_openings and valid_closing(text,i):
 					start_idx = single_openings.pop() 
 					single_pairs.append((start_idx, i))
-					i+=1
 				else:  
 					double_openings.append(i)
-					i+=2
+					i+=1
 			else:
 				# Overlaps with math block - skip it and remove any current inline
 				if double_openings:
@@ -68,7 +67,7 @@ def get_valid_pairs(text):
 						single_openings[0] = i
 					else:
 						single_openings.append(i)
-				i+=1
+		i+=1
 						
 	return single_pairs, double_pairs
 	
@@ -91,3 +90,10 @@ def convert_obsidian_math(text: str) -> str:
 		text[end+1] = ""
 	
 	return ''.join(text)
+
+def convert_mathjax_math(text):
+    text = re.sub(r'\\\[(.+?)\\\]', r'$$\1$$', text, flags=re.DOTALL)
+
+    text = re.sub(r'\\\((.+?)\\\)', r'$\1$', text)
+
+    return text
